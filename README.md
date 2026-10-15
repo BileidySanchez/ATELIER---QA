@@ -1,134 +1,66 @@
-# ATELIER — Contemporary Fashion & Haute Couture
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<div align="center">
+<p align="center">
+<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-![ATELIER Banner](https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=80)
+## About Laravel
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-black.svg?style=for-the-badge)](LICENSE)
-[![Status: In Development](https://img.shields.io/badge/Status-Active%20Development-black.svg?style=for-the-badge)](https://github.com/PBB003/ATELIER)
-[![Tech Stack](https://img.shields.io/badge/Stack-Modern%20Web-black.svg?style=for-the-badge)](#-stack-tecnol%C3%B3gico)
-[![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-black.svg?style=for-the-badge)](CONTRIBUTING.md)
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-**Plataforma de comercio electrónico de alta gama para moda contemporánea, colecciones exclusivas y sastrería de autor.**
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-[Explorar Colección](#-características-principales) • [Arquitectura](#-arquitectura-del-proyecto) • [Instalación](#-instalación-y-despliegue) • [Roadmap](#-roadmap-de-producto)
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
----
+## Learning Laravel
 
-</div>
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-## 📖 Visión General
+You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-**ATELIER** es una solución e-commerce vanguardista concebida para marcas de moda de lujo y diseñadores independientes. Diseñada con un enfoque estético minimalista, navegación ultra fluida y una arquitectura escalable, ofrece a los clientes una experiencia de compra inmersiva inspirada en las pasarelas y boutiques más prestigiosas del mundo.
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
----
+## Laravel Sponsors
 
-## ✨ Características Principales
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-### 🛍️ Experiencia del Cliente (Storefront)
-- **Catálogo Editorial & Colecciones:** Visualización en alta definición con filtros avanzados por categoría, temporada, talla, material y paleta de colores.
-- **Lookbook Interactivo:** Navegación por conjuntos completos con función *"Comprar el Look"*.
-- **Ficha de Producto de Alta Precisión:** Galería multimedia, selector dinámico de variantes (tallas/colores), guía de medidas interactiva y disponibilidad en tiempo real.
-- **Bolsa de Compras & Fast Checkout:** Carrito deslizable con persistencia local/remota, cálculo automático de envíos, cupones de descuento e integración de pasarelas de pago.
-- **Portal de Clientes & Fidelización:** Historial de pedidos, lista de deseos (Wishlist), seguimiento de envíos y preferencias de estilo personalizadas.
+### Premium Partners
 
-### ⚙️ Gestión y Operaciones (Backoffice)
-- **Control de Inventario & Stock:** Alertas de existencias mínimas y control multisede/bodega.
-- **Gestión de Pedidos & Logística:** Flujo completo desde la confirmación del pedido hasta el despacho y entrega.
-- **Analíticas y Métricas de Venta:** Métricas de conversión, prendas más demandadas y valor promedio por carrito (AOV).
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[WebReinvent](https://webreinvent.com/)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
+- **[Cyber-Duck](https://cyber-duck.co.uk)**
+- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
+- **[Jump24](https://jump24.co.uk)**
+- **[Redberry](https://redberry.international/laravel/)**
+- **[Active Logic](https://activelogic.com)**
+- **[byte5](https://byte5.de)**
+- **[OP.GG](https://op.gg)**
 
----
+## Contributing
 
-## 🛠️ Stack Tecnológico
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-| Capa | Tecnologías |
-| :--- | :--- |
-| **Frontend** | HTML5 Semántico, JavaScript Moderno (ES6+), CSS3 / Vanilla CSS con variables de diseño |
-| **Diseño & UI/UX** | Diseño responsivo (Mobile-First), microinteracciones, estética editorial y tipografía curada |
-| **Gestión de Estado** | Storage modular y reactividad basada en eventos |
-| **Control de Versiones & CI/CD** | Git, GitHub Actions |
+## Code of Conduct
 
----
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## 📁 Arquitectura del Proyecto
+## Security Vulnerabilities
 
-```text
-ATELIER/
-├── assets/                  # Recursos estáticos
-│   ├── css/                 # Hojas de estilo y design tokens
-│   ├── js/                  # Módulos y controladores de lógica
-│   ├── images/              # Fotografías de productos y lookbooks
-│   └── icons/               # Iconografía y branding
-├── components/              # Componentes de interfaz reutilizables
-├── pages/                   # Vistas principales (Catálogo, Producto, Carrito, Checkout)
-├── data/                    # Catálogo de productos y configuración inicial
-├── docs/                    # Documentación técnica y especificaciones
-├── .gitignore
-└── README.md
-```
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
----
+## License
 
-## 🚀 Instalación y Despliegue
-
-### Requisitos Previos
-- [Git](https://git-scm.com/) instalado en el sistema.
-- Navegador web moderno (Chrome, Firefox, Safari, Edge).
-- Opcional: Entorno Node.js / servidor HTTP local (como Live Server o Vite).
-
-### Pasos de Configuración
-
-1. **Clonar el repositorio:**
-   ```bash
-   git clone https://github.com/PBB003/ATELIER.git
-   cd ATELIER
-   ```
-
-2. **Iniciar en entorno de desarrollo local:**
-   - Si utilizas una extensión como **Live Server** en VSCode: abrir `index.html` con Live Server.
-   - O usando cualquier servidor HTTP estático:
-     ```bash
-     npx serve .
-     # o
-     python -m http.server 8000
-     ```
-
-3. **Acceder a la aplicación:**
-   Abrir en el navegador: `http://localhost:8000` (o el puerto indicado por tu servidor).
-
----
-
-## 🗺️ Roadmap de Producto
-
-- [x] Concepción del sistema de diseño y paleta editorial.
-- [x] Estructura base del catálogo y storefront.
-- [ ] Integración de pasarela de pago (Stripe / PayPal / Webpay).
-- [ ] Recomendador de tallas asistido por IA.
-- [ ] Módulo de realidad aumentada para visualización de prendas.
-- [ ] Soporte multi-idioma y multi-moneda automatizado.
-
----
-
-## 🤝 Contribuciones
-
-Las contribuciones son bienvenidas. Si deseas colaborar en la optimización o agregar nuevas características a la plataforma:
-
-1. Realiza un Fork del proyecto.
-2. Crea una rama para tu función (`git checkout -b feature/nueva-caracteristica`).
-3. Confirma tus cambios (`git commit -m 'feat: agrega nueva característica al catálogo'`).
-4. Haz push a la rama (`git push origin feature/nueva-caracteristica`).
-5. Abre un **Pull Request**.
-
----
-
-## 📄 Licencia
-
-Distribuido bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
-
----
-
-<div align="center">
-
-**ATELIER Haute Couture © 2026** — *Elevating modern aesthetics through digital craftsmanship.*
-
-</div>
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
