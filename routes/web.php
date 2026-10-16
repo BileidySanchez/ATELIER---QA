@@ -7,7 +7,7 @@ use App\Http\Controllers\ProductController as CatalogProductController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 })->name('home');
 
 Route::get('/contacto', function () {
