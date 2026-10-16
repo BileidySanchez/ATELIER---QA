@@ -53,9 +53,9 @@
 
 <header class="site-header">
   <div class="contenedor">
-    <a href="index.html">
-  <img src="img/atelier.png" alt="ATELIER" style="width: 70px; height: auto;">
-</a>
+   <a href="{{ route('home') }}">
+     <img src="{{ asset('img/atelier.png') }}" alt="ATELIER" style="width: 42px; height: auto;">
+    </a>
     
 
     <input type="checkbox" id="nav-toggle" class="nav-toggle">
