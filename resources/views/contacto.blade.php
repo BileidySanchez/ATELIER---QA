@@ -69,8 +69,8 @@
           <li><a href="#">Mujer</a></li>
           <li><a href="#">Hombre</a></li>
           <li><a href="#">Niños</a></li>
-          <li><a href="sobre-nosotros.html">Nosotros</a></li>
-          <li><a href="contacto.html">Contacto</a></li>
+          <li><a href="{{ route('about.show') }}">Nosotros</a></li>
+          <li><a href="{{ route('contact.show') }}">Contacto</a></li>
         </ul>
       </nav>
 

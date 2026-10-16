@@ -28,7 +28,15 @@ Route::middleware('guest')->group(function () {
 
     Route::post('/login', [AuthController::class, 'login'])
         ->name('login.store');
+
+// sobre nosotros
+
+Route::get('/sobre-nosotros', function () {
+    return view('sobre-nosotros');
+})->name('about.show');
+
 });
+
 
 // Cierre de sesión.
 Route::post('/logout', [AuthController::class, 'logout'])

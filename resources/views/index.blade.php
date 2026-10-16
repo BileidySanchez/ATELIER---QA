@@ -30,7 +30,7 @@
      <img src="{{ asset('img/atelier.png') }}" alt="ATELIER" style="width: 42px; height: auto;">
     </a>
  
-    <a href="index.php" id="logo">
+    <a href="{{ route('home') }}" id="logo">
      TELIER
     </a>
 
@@ -42,10 +42,10 @@
     <div class="nav-search-zone" id="nav-search-zone">
       <nav class="main-nav" aria-label="Navegación principal">
         <ul>
-          <li><a href="index.php#coleccion">Mujer</a></li>
-          <li><a href="index.php#coleccion">Hombre</a></li>
-          <li><a href="index.php#coleccion">Niños</a></li>
-          <li><a href="sobre-nosotros.html">Nosotros</a></li>
+          <li><a href="{{ route('home') }}#coleccion">Mujer</a></li>
+          <li><a href="{{ route('home') }}#coleccion">Hombre</a></li>
+          <li><a href="{{ route('home') }}#coleccion">Niños</a></li>
+          <li><a href="{{ route('about.show') }}">Nosotros</a></li>
           <li><a href="{{ route('contact.show') }}">Contacto</a></li>
         </ul>
       </nav>
