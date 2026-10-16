@@ -2,21 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\JsonResponse;
 
 class ProductController extends Controller
 {
     /**
-     * Devuelve la estructura inicial del catálogo.
-     *
-     * La consulta a productos reales se incorporará cuando
-     * exista el modelo y la tabla correspondiente.
+     * Consulta los productos activos y sus categorías.
      */
     public function index(): JsonResponse
     {
+        $products = Product::with('category')
+            ->where('is_active', true)
+            ->orderBy('name')
+            ->get();
+
         return response()->json([
             'message' => 'Catálogo de ATELIER',
-            'products' => [],
+            'products' => $products,
         ]);
     }
 }

@@ -1,0 +1,10 @@
+@extends('admin.layout')
+@section('title', 'Productos')
+@section('content')
+<div class="heading"><div><div class="eyebrow">Catálogo de la tienda</div><h1>Productos</h1><p>Administra las prendas, sus precios y la disponibilidad del inventario.</p></div><a class="button primary" href="{{ route('admin.products.create') }}">＋ Crear producto</a></div>
+<section class="panel"><div class="panel-head"><div><h2>Inventario</h2><p class="sub">{{ $products->total() }} {{ $products->total() === 1 ? 'producto registrado' : 'productos registrados' }}</p></div><span class="eyebrow">ATELIER / PRODUCTOS</span></div>
+<div class="table-wrap"><table class="table"><thead><tr><th>Producto</th><th>Categoría</th><th>Precio</th><th>Existencias</th><th>Estado</th><th>Acciones</th></tr></thead><tbody>
+@forelse($products as $product)<tr><td><div class="product-name">{{ $product->name }}</div><div class="meta">Referencia #{{ $product->id }}</div></td><td>{{ $product->category->name ?? 'Sin categoría' }}</td><td class="price">RD$ {{ number_format((float)$product->price, 2) }}</td><td>{{ $product->stock }}</td><td><span class="status {{ $product->is_active ? 'active' : 'inactive' }}">{{ $product->is_active ? 'Activo' : 'Inactivo' }}</span></td><td><div class="row-actions"><a class="button secondary small" href="{{ route('admin.products.edit', $product) }}">Editar</a><form class="inline" method="POST" action="{{ route('admin.products.destroy', $product) }}" onsubmit="return confirm('¿Seguro que deseas eliminar este producto? Esta acción no se puede deshacer.')">@csrf @method('DELETE')<button class="button danger small" type="submit">Eliminar</button></form></div></td></tr>
+@empty<tr><td colspan="6"><div class="empty"><strong>El catálogo está vacío</strong>Crea el primer producto para empezar a organizar el inventario.<p style="margin-top:18px"><a class="button primary" href="{{ route('admin.products.create') }}">Crear producto</a></p></div></td></tr>@endforelse
+</tbody></table></div>@if($products->hasPages())<div class="pagination">{{ $products->links() }}</div>@endif</section>
+@endsection
