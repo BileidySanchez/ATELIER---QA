@@ -8,11 +8,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <!-- MÉTODO 1 CSS EXTERNO -->
-  <link rel="stylesheet" href="styles.css">
+ <link rel="stylesheet" href="{{ asset('styles.css') }}">
   <!-- MÉTODO 2 CSS INTERNO -->
   <style>
     #hero-nosotros{
-      background-image: url("img/percha.jpg");
+      background-image: url("{{ asset('img/percha.jpg') }}");
     }
   </style>
 </head>
@@ -20,7 +20,7 @@
  <header class="site-header">
   <div class="contenedor">
     <a href="{{ route('home') }}">
-      <img src="img/logo.png" alt="ATELIER" style="width: 42px; height: auto;">
+      <img src="{{ asset('img/logo.png') }}" alt="ATELIER" style="width: 42px; height: auto;">
     </a>
  
     <a href="{{ route('home') }}" id="logo">
@@ -35,9 +35,9 @@
     <div class="nav-search-zone" id="nav-search-zone">
       <nav class="main-nav" aria-label="Navegación principal">
         <ul>
-          <li><a href="index.php#coleccion">Mujer</a></li>
-          <li><a href="index.php#coleccion">Hombre</a></li>
-          <li><a href="index.php#coleccion">Niños</a></li>
+  <li><a href="{{ route('products.index', ['genero' => 'mujer']) }}">Mujer</a></li>
+          <li><a href="{{ route('products.index', ['genero' => 'hombre']) }}">Hombre</a></li>
+          <li><a href="{{ route('products.index', ['genero' => 'ninos']) }}">Niños</a></li>
           <li><a href="{{ route('about.show') }}">Nosotros</a></li>
           <li><a href="{{ route('contact.show') }}">Contacto</a></li>
         </ul>
@@ -71,7 +71,7 @@
           </select>
 
           <!-- Cuenta -->
-          <a href="login.php" aria-label="Mi cuenta" class="icono-utilidad">
+          <a href="{{ route('login') }}" aria-label="Mi cuenta" class="icono-utilidad">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="12" cy="8" r="4"/>
               <path d="M4 20c0-4 3.5-6 8-6s8 2 8 6"/>
@@ -124,7 +124,7 @@
             <p>Seleccionamos cuidadosamente algodón peinado transpirable, lino fresco y textiles de alta durabilidad ideales para nuestro entorno. Cada pieza lleva una ficha técnica con el origen de la tela y las recomendaciones para extender su vida útil.</p>
             <p>Trabajamos de la mano con talleres locales cibaeños, apoyando la tradición textil de la región sin recurrir a procesos desmedidos que perjudiquen nuestros recursos.</p>
           </div>
-          <img src="img/telas.jpeg" alt="Rollos de tela de algodón y lino en el taller">
+       <img src="{{ asset('img/telas.jpeg') }}" alt="Rollos de tela de algodón y lino en el taller">
         </div>
       </div>
     </section>
@@ -186,30 +186,9 @@
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="contenedor footer-grid">
-      <div>
-        <h3>ATELIER</h3>
-        <p style="color:#B9B4A9;font-size:.9rem;max-width:260px;">Moda hecha en Santiago de los Caballeros con materiales honestos, pensada para durar.</p>
-      </div>
-      <div>
-        <h3>Empresa</h3>
-        <ul><li><a href="sobre-nosotros.html">Nosotros</a></li><li><a href="contacto.php">Contacto</a></li></ul>
-      </div>
-      <div>
-        <h3>Políticas</h3>
-        <ul><li><a href="#">Envíos y devoluciones</a></li><li><a href="#">Privacidad</a></li></ul>
-      </div>
-      <div>
-        <h3>Boletín</h3>
-        <form id="newsletter-form" action="#" onsubmit="return false;">
-          <input type="email" id="newsletter-email" placeholder="tu@correo.com" aria-label="Correo electrónico">
-          <button type="submit">Unirme</button>
-        </form>
-      </div>
-    </div>
-  </footer>
-  <script src="js/utils.js"></script>
-  <script src="js/main.js"></script>
+  
+@include('partials.footer')
+<script src="{{ asset('js/utils.js') }}"></script>
+<script src="{{ asset('js/main.js') }}"></script>
 </body>
 </html>

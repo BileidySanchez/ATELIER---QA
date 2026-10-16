@@ -66,9 +66,9 @@
     <div class="nav-search-zone" id="nav-search-zone">
       <nav class="main-nav" aria-label="Navegación principal">
         <ul>
-          <li><a href="#">Mujer</a></li>
-          <li><a href="#">Hombre</a></li>
-          <li><a href="#">Niños</a></li>
+          <li><a href="{{ route('products.index', ['genero' => 'mujer']) }}">Mujer</a></li>
+          <li><a href="{{ route('products.index', ['genero' => 'hombre']) }}">Hombre</a></li>
+          <li><a href="{{ route('products.index', ['genero' => 'ninos']) }}">Niños</a></li>
           <li><a href="{{ route('about.show') }}">Nosotros</a></li>
           <li><a href="{{ route('contact.show') }}">Contacto</a></li>
         </ul>
