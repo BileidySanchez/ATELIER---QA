@@ -17,26 +17,22 @@ Route::get('/contacto', function () {
 Route::post('/contacto', [ContactController::class, 'store'])
     ->name('contact.store');
 
+// Sobre nosotros (pública, fuera del grupo guest)
+Route::get('/sobre-nosotros', function () {
+    return view('sobre-nosotros');
+})->name('about.show');
+
 // Catálogo público.
 Route::get('/productos', [CatalogProductController::class, 'index'])
     ->name('products.index');
 
-// Inicio de sesión.
+// Inicio de sesión (solo para NO logueados).
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])
         ->name('login');
 
     Route::post('/login', [AuthController::class, 'login'])
         ->name('login.store');
-
-// sobre nosotros
-
-Route::get('/sobre-nosotros', function () {
-    return view('sobre-nosotros');
-})->name('about.show');
-
-
-
 });
 
 
