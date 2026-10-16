@@ -35,6 +35,8 @@ Route::get('/sobre-nosotros', function () {
     return view('sobre-nosotros');
 })->name('about.show');
 
+
+
 });
 
 
