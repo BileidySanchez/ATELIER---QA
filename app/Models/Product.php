@@ -20,6 +20,7 @@ class Product extends Model
         'color',
         'imagen',
         'categoria_id',
+        'genero',
     ];
 
     protected function casts(): array
