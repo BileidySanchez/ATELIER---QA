@@ -1,66 +1,126 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# ATELIER
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Tienda en línea de moda contemporánea. Proyecto del curso **Desarrollo de Aplicaciones Web (ISW-306)**,
+construido por fases: maquetación (HTML/CSS) → JavaScript → backend en PHP → **integración del framework Laravel (Fase 4)**.
 
-## About Laravel
+En la Fase 4 la aplicación se migra de PHP puro a **Laravel 12**, aprovechando su enrutamiento, controladores,
+vistas Blade, validación y contenedor de inyección de dependencias.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🛠️ Tecnologías y versiones
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+| Componente | Versión requerida | Versión con la que se probó | Uso |
+|---|---|---|---|
+| PHP | 8.2 o superior | 8.3.6 | Lenguaje del servidor |
+| **Laravel (framework elegido)** | 12.x | 12.70.0 (fijada en `composer.lock`) | Rutas, controladores, Eloquent, Blade |
+| Composer | 2.x | 2.8.12 | Gestor de dependencias de PHP |
+| MySQL / MariaDB | MySQL 8 o MariaDB 10.4+ | MariaDB 10.11.14 (la de XAMPP) | Base de datos `atelier_db` |
+| HTML, CSS y JavaScript | — | — | Interfaz (`public/`) |
+| Node.js / npm | **No requerido** | — | La interfaz usa archivos estáticos; no hace falta `npm install` |
+| Python | **No requerido** | — | — |
 
-## Learning Laravel
+## ✅ Requisitos previos
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- **PHP 8.2+** con las extensiones `pdo_mysql`, `mbstring`, `openssl`, `fileinfo` y `curl` (XAMPP las trae activas).
+- **Composer** instalado (`composer --version`).
+- **MySQL o MariaDB** en ejecución en el puerto 3306 (por ejemplo, el módulo *MySQL* de XAMPP).
+- **Git**.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🚀 Instalación y ejecución local
 
-## Laravel Sponsors
+### 1. Clonar el repositorio
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```bash
+git clone https://github.com/PBB003/ATELIER.git
+cd ATELIER
+git checkout fase-4-despliegue
+```
 
-### Premium Partners
+### 2. Instalar las dependencias de PHP
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+```bash
+composer install
+```
 
-## Contributing
+### 3. Crear el archivo de entorno
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+cp .env.example .env
+```
 
-## Code of Conduct
+> En Windows (CMD) usa `copy .env.example .env`.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 4. Configurar la base de datos en `.env`
 
-## Security Vulnerabilities
+Abre el archivo `.env` y reemplaza el bloque que empieza en `DB_CONNECTION` por este
+(por defecto viene configurado para SQLite):
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```ini
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=atelier_db
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-## License
+> El archivo `.env` contiene credenciales y **no se sube a Git** (está en `.gitignore`).
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 5. Crear la base de datos
+
+1. Inicia el módulo **MySQL** en XAMPP.
+2. Abre phpMyAdmin (`http://localhost/phpmyadmin`) y crea una base de datos vacía llamada `atelier_db`
+   (cotejamiento `utf8mb4_unicode_ci`).
+
+### 6. Generar la clave de la aplicación y ejecutar las migraciones
+
+```bash
+php artisan key:generate
+php artisan migrate --seed
+```
+
+### 7. Iniciar el servidor de desarrollo
+
+```bash
+php artisan serve
+```
+
+Abre en el navegador: **http://127.0.0.1:8000**
+
+---
+
+## 🔑 Credenciales de demostración
+
+> Pendiente
+---
+
+## 🧯 Solución de problemas
+
+| Error | Causa probable | Solución |
+|---|---|---|
+| `SQLSTATE[HY000] [2002] Connection refused` | MySQL no está iniciado | Inicia el módulo MySQL en XAMPP |
+| `Unknown database 'atelier_db'` | La base de datos no existe | Créala en phpMyAdmin (paso 5) |
+| `No application encryption key has been specified` | Falta la clave | `php artisan key:generate` |
+| `Class "…" not found` / carpeta `vendor` ausente | No se instalaron las dependencias | `composer install` |
+| El puerto 8000 está ocupado | Otro proceso lo usa | `php artisan serve --port=8001` |
+
+## 👥 Integrantes del equipo
+
+| Integrante | Usuario | Link de GitHub |
+|---|---|---|
+| 	Laura Isabel García Ferrera | Lequeen88 | https://github.com/Lequeen88 |
+| 	Rebeca Lisbeth Santana Gómez | Rebeca Lisbeth | https://github.com/RebecaLisbeth
+| 	Pedro Francisco Breynik Báez | PBB003
+ | https://github.com/PBB003 |
+| Bileidy Adriana Sánchez Severino | BileidySanchez | https://github.com/BileidySanchez |
+
+## 🌿 Flujo de ramas
+
+`main` → `fase-1-maquetacion` → `fase-2-javascript` → `fase-3-backend` → **`fase-4-despliegue`** (Pull Request a `main`, versión `v4.0`).
+
+## 📄 Licencia
+
+Distribuido bajo la licencia MIT. Consulta el archivo [`LICENSE`](LICENSE).
