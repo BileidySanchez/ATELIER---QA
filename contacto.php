@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ATELIER</title>
-<link rel="icon" href="data:,">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-<!-- MÉTODO 1 CSS EXTERNO -->
-<link rel="stylesheet" href="styles.css">
+<?php
+$titulo_pagina = "Contacto";
+include "header.php";
+?>
 <style>
   .site-header #logo img {
     width: 135px;
@@ -45,90 +37,16 @@
     margin: 0;
 }
 </style>
-</head>
-<body>
 
-<header class="site-header">
-  <div class="contenedor">
-    <a href="index.html">
-      <img src="img/atelier.png" alt="ATELIER" style="width: 70px; height: auto;">
-    </a>
+<section>
+  <?php if (isset($_GET["ok"])): ?>
+    <p class="alert-success">&iexcl;Gracias! Tu mensaje fue enviado correctamente.</p>
+  <?php endif; ?>
 
-    <input type="checkbox" id="nav-toggle" class="nav-toggle">
-    <label for="nav-toggle" class="nav-toggle-label" aria-label="Abrir menú">
-      <span></span><span></span><span></span>
-    </label>
-
-    <div class="nav-search-zone" id="nav-search-zone">
-      <nav class="main-nav" aria-label="Navegación principal">
-        <ul>
-          <li><a href="index.html#coleccion">Mujer</a></li>
-          <li><a href="index.html#coleccion">Hombre</a></li>
-          <li><a href="index.html#coleccion">Niños</a></li>
-          <li><a href="sobre-nosotros.html">Nosotros</a></li>
-          <li><a href="contacto.html">Contacto</a></li>
-        </ul>
-      </nav>
-
-      <!-- Buscador dinámico: oculto hasta que se activa el modo búsqueda.
-           Ya no tiene su propio ícono de lupa: el botón #btn-buscar es
-           el que "viaja" visualmente hasta el borde izquierdo de este input. -->
-      <div class="buscador-wrap" id="buscador-wrap">
-        <input type="search" id="buscador-input" class="buscador-input" placeholder="Buscar productos..." aria-label="Buscar productos">
-      </div>
-    </div>
-
-    <div class="utilidades">
-
-          <!-- Botón de búsqueda -->
-          <button id="btn-buscar" aria-label="Buscar" aria-expanded="false">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="11" cy="11" r="7"/>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-            </svg>
-          </button>
-
-          <!-- Selector de categoría -->
-          <select id="filtro-categoria" aria-label="Filtrar por categoría">
-            <option value="todas">Todas</option>
-            <option value="Vestidos">Vestidos</option>
-            <option value="Camisas">Camisas</option>
-            <option value="Pantalones">Pantalones</option>
-            <option value="Zapatos">Zapatos</option>
-          </select>
-
-          <!-- Cuenta -->
-          <button aria-label="Mi cuenta">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="8" r="4"/>
-              <path d="M4 20c0-4 3.5-6 8-6s8 2 8 6"/>
-            </svg>
-          </button>
-
-          <!-- Favoritos -->
-          <button aria-label="Favoritos">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 20s-7-4.4-9.5-9C.7 7.2 2.6 4 6 4c2 0 3.5 1.1 4.5 2.7C11.5 5.1 13 4 15 4c3.4 0 5.3 3.2 3.5 7-2.5 4.6-9.5 9-9.5 9Z"/>
-            </svg>
-          </button>
-
-          <!-- Carrito -->
-          <button aria-label="Carrito">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M3 4h2l1.5 12.5A2 2 0 0 0 8.5 18h8a2 2 0 0 0 2-1.6L20 7H6"/>
-              <circle cx="9" cy="21" r="1"/>
-              <circle cx="17" cy="21" r="1"/>
-            </svg>
-            <span class="cart-count">2</span>
-          </button>
-
-   </div>
-  </div>
-</header>
-
-<main>
-  <section>
-    <div class="contenedor form-layout">
+  <?php if (isset($_GET["error"])): ?>
+    <p class="error-msg">Hubo un problema al enviar tu mensaje. Revisa los campos e int&eacute;ntalo de nuevo.</p>
+  <?php endif; ?>
+  <div class="contenedor form-layout">
 
       <div>
         <p class="hero-eyebrow" style="color:var(--accent-2); letter-spacing: .14em;">
@@ -145,7 +63,7 @@
           Todos los campos marcados con * son obligatorios.
         </p>
 
-       <form id="form-contacto" action="#" novalidate>
+       <form id="form-contacto" method="POST" action="contacto-procesar.php" novalidate>
 
   <fieldset>
     <legend>Tus datos</legend>
@@ -328,34 +246,6 @@
 
     </div>
   </section>
-</main>
+  <script src="js/script.js"></script>
 
-<footer class="site-footer">
-  <div class="contenedor footer-grid">
-    <div>
-      <h3>ATELIER</h3>
-      <p style="color:#B9B4A9;font-size:.9rem;max-width:260px;">Ropa hecha con materiales honestos, pensada para durar más que una temporada.</p>
-    </div>
-    <div>
-      <h3>Empresa</h3>
-      <ul><li><a href="sobre-nosotros.html">Nosotros</a></li><li><a href="contacto.html">Contacto</a></li></ul>
-    </div>
-    <div>
-      <h3>Políticas</h3>
-      <ul><li><a href="#">Envíos y devoluciones</a></li><li><a href="#">Privacidad</a></li></ul>
-    </div>
-    <div>
-      <h3>Boletín</h3>
-      <form id="newsletter-form" action="#" onsubmit="return false;">
-        <input type="email" placeholder="tu@correo.com" aria-label="Correo electrónico">
-        <button type="submit">Unirme</button>
-      </form>
-    </div>
-  </div>
-</footer>
-
-<script src="js/utils.js"></script>
-<script src="js/main.js"></script>
-<script src="js/script.js"></script>
-</body>
-</html>
+<?php include "footer.php"; ?>
