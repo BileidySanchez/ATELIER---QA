@@ -34,7 +34,7 @@ Antes de instalar el proyecto, asegúrate de tener:
 - SQLite o MySQL instalado según tu entorno.
 - Node.js y npm si deseas compilar assets frontend con Vite.
 
-Si usas SQLite, debes tener activadas las extensiones `pdo_sqlite` y `sqlite3`.
+Si usas SQLite, debes tener activadas las extensiones `pdo_sqlite`, `sqlite3` y `zip` (requerida por Composer).
 Si usas MySQL, asegúrate de tener `pdo_mysql` disponible.
 
 ## Instalación local
@@ -62,12 +62,12 @@ composer install
 
 Copia el archivo de ejemplo:
 
-```bash
-copy .env.example .env
+En Windows (PowerShell):
+```powershell
+Copy-Item .env.example .env
 ```
 
 En Linux/macOS:
-
 ```bash
 cp .env.example .env
 ```
@@ -80,27 +80,33 @@ php artisan key:generate
 
 ### 4. Configurar la base de datos
 
-El proyecto puede funcionar con SQLite o con MySQL. Para desarrollo local, la opción recomendada es SQLite.
+El proyecto viene preparado para funcionar con **SQLite por defecto** en entorno local, garantizando una configuración inmediata sin necesidad de levantar servicios de bases de datos externos. También es compatible con MySQL.
 
-#### Opción A: SQLite (recomendada para local)
+#### Opción A: SQLite (por defecto y recomendada para local)
 
-Asegúrate de tener esta configuración en `.env`:
+El archivo `.env.example` ya viene configurado con:
 
 ```dotenv
 DB_CONNECTION=sqlite
 ```
 
-Y crea el archivo de la base de datos si no existe:
+Crea el archivo de la base de datos si no existe:
 
+En PowerShell (Windows):
 ```powershell
 if (!(Test-Path database/database.sqlite)) {
     New-Item database/database.sqlite -ItemType File
 }
 ```
 
-#### Opción B: MySQL
+En Bash (Linux/macOS):
+```bash
+touch database/database.sqlite
+```
 
-Configura los datos de conexión en `.env`:
+#### Opción B: MySQL (opcional)
+
+Si deseas utilizar MySQL, ajusta las siguientes variables en tu `.env`:
 
 ```dotenv
 DB_CONNECTION=mysql
@@ -111,15 +117,15 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-> El archivo `.env.example` del proyecto usa MySQL por defecto. Si prefieres SQLite, cámbialo antes de ejecutar migraciones.
-
 ### 5. Ejecutar migraciones y datos iniciales
 
 ```bash
 php artisan migrate --seed
 ```
 
-Esto crea las tablas y carga los seeders iniciales, incluyendo el usuario administrativo base.
+Esto crea las tablas y carga los seeders iniciales:
+- Categorías y prendas para **Mujer**, **Hombre** y **Niños**.
+- Cuenta de usuario administrador base.
 
 ### 6. Iniciar la aplicación
 
@@ -135,17 +141,25 @@ http://127.0.0.1:8000
 
 ## Rutas principales
 
-- `/` — Home del sitio.
-- `/productos` — Catálogo público.
-- `/contacto` — Formulario de contacto.
+- `/` — Portada principal del sitio.
+- `/productos` — Catálogo público con filtros dinámicos por género (`?genero=mujer`, `hombre`, `ninos`) y categorías.
+- `/sobre-nosotros` — Historia, filosofía y taller de la marca.
+- `/contacto` — Formulario de contacto con procesamiento backend.
 - `/login` — Inicio de sesión.
-- `/admin/productos` — Gestión administrativa de productos.
+- `/admin/productos` — Panel administrativo (CRUD protegido de inventario).
 
 ## Acceso administrativo
 
-El sistema usa autenticación y un middleware para restringir el acceso al panel administrativo.
+El sistema cuenta con autenticación y control de acceso basado en roles mediante el middleware `admin`.
 
-Se recomienda crear un usuario administrador seguro y no guardar credenciales reales en el repositorio. El seeder existente puede usarse como base en entornos locales o de prueba, pero en producción debe actualizarse con una contraseña segura y apropiada para cada entorno.
+Para ingresar al panel en entorno de pruebas local:
+1. Navega a `http://127.0.0.1:8000/login`.
+2. Inicia sesión con las credenciales creadas por el seeder inicial:
+   - **Correo electrónico:** `admin@atelier.com`
+   - **Contraseña:** `admin123`
+3. Al autenticarte, tendrás acceso completo a `/admin/productos` para listar, crear, editar y eliminar prendas del catálogo.
+
+> **Nota de seguridad:** Las credenciales anteriores corresponden exclusivamente a entornos locales de demostración. Para producción, define siempre contraseñas seguras y actualiza las variables de entorno.
 
 ## Frontend y assets
 

@@ -14,8 +14,8 @@
     <div>
       <h3>Empresa</h3>
       <ul>
-        <li><a href="sobre-nosotros.html">Nosotros</a></li>
-        <li><a href="contacto.php">Contacto</a></li>
+        <li><a href="{{ route('about.show') }}">Nosotros</a></li>
+        <li><a href="{{ route('contact.show') }}">Contacto</a></li>
         <li><a href="#">Preguntas frecuentes</a></li>
       </ul>
     </div>

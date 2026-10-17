@@ -8,25 +8,33 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-  public function index(Request $request)
+    public function index(Request $request)
     {
-      // Categorías: si hay filtro de género, solo las que tienen productos de ese género
-    $categorias = Category::when($request->genero, function ($query) use ($request) {
-        $query->whereHas('products', function ($q) use ($request) {
-            $q->where('genero', $request->genero);
-        });
-    })->get();
+        $genero = $request->genero ?? $request->gender;
+        $categoriaId = $request->categoria ?? $request->category_id;
 
-    $productos = Product::with('category')
-        ->when($request->genero, function ($query) use ($request) {
-            $query->where('genero', $request->genero);
-        })
-        ->when($request->categoria, function ($query) use ($request) {
-            $query->where('categoria_id', $request->categoria);
-        })
-        ->orderBy('nombre')
-        ->get();
+        // Categorías: si hay filtro de género, mostrar las que tengan productos de ese género
+        $categorias = Category::where('is_active', true)
+            ->when($genero, function ($query) use ($genero) {
+                $query->whereHas('products', function ($q) use ($genero) {
+                    $q->where('is_active', true)
+                      ->where('gender', $genero);
+                });
+            })
+            ->orderBy('name')
+            ->get();
 
-    return view('productos', compact('productos', 'categorias'));
+        $productos = Product::with('category')
+            ->where('is_active', true)
+            ->when($genero, function ($query) use ($genero) {
+                $query->where('gender', $genero);
+            })
+            ->when($categoriaId, function ($query) use ($categoriaId) {
+                $query->where('category_id', $categoriaId);
+            })
+            ->orderBy('name')
+            ->get();
+
+        return view('productos', compact('productos', 'categorias', 'genero'));
     }
 }

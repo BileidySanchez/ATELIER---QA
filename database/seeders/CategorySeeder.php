@@ -1,28 +1,49 @@
 <?php
 
-namespace App\Models;
+namespace Database\Seeders;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Category;
+use Illuminate\Database\Seeder;
 
-class Category extends Model
+class CategorySeeder extends Seeder
 {
-    protected $fillable = [
-        'name',
-        'slug',
-        'description',
-        'is_active',
-    ];
-
-    protected function casts(): array
+    public function run(): void
     {
-        return [
-            'is_active' => 'boolean',
+        $categories = [
+            [
+                'name' => 'Blusas',
+                'slug' => 'blusas',
+                'description' => 'Blusas elegantes y casuales.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Pantalones',
+                'slug' => 'pantalones',
+                'description' => 'Pantalones de corte moderno y clásico.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Vestidos',
+                'slug' => 'vestidos',
+                'description' => 'Vestidos para toda ocasión.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Faldas',
+                'slug' => 'faldas',
+                'description' => 'Faldas de diversos estilos y cortes.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Camisas',
+                'slug' => 'camisas',
+                'description' => 'Camisas de lino y algodón para hombre y mujer.',
+                'is_active' => true,
+            ],
         ];
-    }
 
-    public function products(): HasMany
-    {
-        return $this->hasMany(Product::class);
+        foreach ($categories as $data) {
+            Category::updateOrCreate(['slug' => $data['slug']], $data);
+        }
     }
 }

@@ -11,6 +11,7 @@ class Product extends Model
 
     protected $fillable = [
         'category_id',
+        'gender',
         'name',
         'slug',
         'description',
@@ -34,5 +35,30 @@ class Product extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class, 'category_id');
+    }
+
+    public function getNombreAttribute(): ?string
+    {
+        return $this->name;
+    }
+
+    public function getPrecioAttribute(): ?float
+    {
+        return $this->price !== null ? (float) $this->price : null;
+    }
+
+    public function getImagenAttribute(): ?string
+    {
+        return $this->image;
+    }
+
+    public function getGeneroAttribute(): ?string
+    {
+        return $this->gender;
+    }
+
+    public function getCategoriaIdAttribute(): ?int
+    {
+        return $this->category_id;
     }
 }
