@@ -5,6 +5,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductController as CatalogProductController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\RegisterController;
+
 
 Route::get('/', function () {
     return view('index');
@@ -33,6 +35,15 @@ Route::middleware('guest')->group(function () {
 
     Route::post('/login', [AuthController::class, 'login'])
         ->name('login.store');
+
+Route::middleware('guest')->group(function () {
+    Route::get('/registro', [RegisterController::class, 'showRegistrationForm'])
+        ->name('registro');
+
+    Route::post('/registro', [RegisterController::class, 'register'])
+        ->name('register.store');
+});
+
 });
 
 

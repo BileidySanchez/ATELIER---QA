@@ -77,13 +77,28 @@
             <option value="Zapatos">Zapatos</option>
           </select>
 
-          <!-- Cuenta -->
-          <a href="<?php echo isset($_SESSION['usuario_id']) ? 'mi-cuenta.php' : 'login.php'; ?>" aria-label="Mi cuenta" class="icono-utilidad">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="8" r="4"/>
-              <path d="M4 20c0-4 3.5-6 8-6s8 2 8 6"/>
-            </svg>
-          </a>
+ 
+<!-- Cuenta -->
+@auth
+    <a href="{{ route('login') }}" aria-label="Mi cuenta" class="icono-utilidad">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 20c0-4 3.5-6 8-6s8 2 8 6"/>
+        </svg>
+    </a>
+
+    <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+        @csrf
+        <button type="submit" class="btn-cerrar-sesion">Cerrar sesión</button>
+    </form>
+@else
+    <a href="{{ route('login') }}" aria-label="Iniciar sesión" class="icono-utilidad">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 20c0-4 3.5-6 8-6s8 2 8 6"/>
+        </svg>
+    </a>
+@endauth
 
           <!-- Favoritos -->
           <button aria-label="Favoritos">

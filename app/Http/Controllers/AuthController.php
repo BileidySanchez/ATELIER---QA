@@ -21,29 +21,21 @@ class AuthController extends Controller
             'password' => ['required', 'string'],
         ]);
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-
-            if (Auth::user()->rol !== 'admin') {   // ← rol, no role
-                Auth::logout();
-                $request->session()->invalidate();
-                $request->session()->regenerateToken();
-
-                return back()
-                    ->withErrors([
-                        'email' => 'No tienes permisos de administrador.',
-                    ])
-                    ->onlyInput('email');
-            }
-
-            return redirect()->intended(route('admin.products.index'));
+        if (!Auth::attempt($credentials)) {
+            return back()
+                ->withErrors([
+                    'email' => 'Las credenciales introducidas no son correctas.',
+                ])
+                ->onlyInput('email');
         }
 
-        return back()
-            ->withErrors([
-                'email' => 'Las credenciales no son correctas.',
-            ])
-            ->onlyInput('email');
+        $request->session()->regenerate();
+
+        if (Auth::user()->role === 'admin') {
+            return redirect()->route('admin.products.index');
+        }
+
+        return redirect()->route('home');
     }
 
     public function logout(Request $request): RedirectResponse

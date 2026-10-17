@@ -7,17 +7,24 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Category extends Model
 {
- protected $table = 'categorias';
-    protected $primaryKey = 'id';
-    public $timestamps = false;
+    protected $table = 'categories';
 
     protected $fillable = [
-        'nombre',
-        'descripcion',
+        'name',
+        'slug',
+        'description',
+        'is_active',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'is_active' => 'boolean',
+        ];
+    }
 
     public function products(): HasMany
     {
-        return $this->hasMany(Product::class, 'categoria_id');
+        return $this->hasMany(Product::class, 'category_id');
     }
 }
