@@ -1,23 +1,41 @@
-﻿# ATELIER
+# ATELIER
 
-Tienda en línea de moda contemporánea. Proyecto del curso Desarrollo de Aplicaciones Web (ISW-306), desarrollado por fases: maquetación, JavaScript, backend e integración con Laravel 12.
+ATELIER es un proyecto de tienda en línea de moda contemporánea desarrollado como parte del curso Desarrollo de Aplicaciones Web (ISW-306). El repositorio integra la maquetación, lógica de frontend, backend y despliegue con Laravel 12.
 
-## Tecnologías
+## Descripción general
 
-| Tecnología | Versión / configuración |
+La aplicación incluye:
+
+- Página principal y contenido público.
+- Catálogo de productos accesible en `/productos`.
+- Formulario de contacto.
+- Inicio y cierre de sesión.
+- Panel administrativo con autenticación y control por rol.
+- Gestión de productos (crear, editar, listar y eliminar).
+
+## Tecnologías utilizadas
+
+| Tecnología | Versiones / uso |
 |---|---|
 | PHP | 8.2 o superior |
 | Laravel | 12.x |
 | Composer | 2.x |
-| Base de datos | SQLite por defecto |
-| Interfaz | HTML, CSS, JavaScript y Blade |
-| Node.js / npm | No requerido para ejecutar la interfaz actual |
+| Base de datos | SQLite recomendado para entorno local; MySQL también es compatible |
+| Frontend | Blade, HTML, CSS, JavaScript |
+| Bundling frontend | Vite y npm |
 
 ## Requisitos previos
 
-- PHP 8.2 o superior, con las extensiones requeridas por Laravel y SQLite (`pdo_sqlite` y `sqlite3`).
+Antes de instalar el proyecto, asegúrate de tener:
+
+- PHP 8.2 o superior.
 - Composer 2.x.
 - Git.
+- SQLite o MySQL instalado según tu entorno.
+- Node.js y npm si deseas compilar assets frontend con Vite.
+
+Si usas SQLite, debes tener activadas las extensiones `pdo_sqlite` y `sqlite3`.
+Si usas MySQL, asegúrate de tener `pdo_mysql` disponible.
 
 ## Instalación local
 
@@ -26,10 +44,15 @@ Tienda en línea de moda contemporánea. Proyecto del curso Desarrollo de Aplica
 ```bash
 git clone https://github.com/PBB003/ATELIER.git
 cd ATELIER
+```
+
+Si quieres trabajar en la rama de despliegue del curso:
+
+```bash
 git checkout fase-4-despliegue
 ```
 
-### 2. Instalar dependencias
+### 2. Instalar dependencias de PHP
 
 ```bash
 composer install
@@ -37,12 +60,16 @@ composer install
 
 ### 3. Configurar el entorno
 
-Copia `.env.example` a `.env`.
+Copia el archivo de ejemplo:
 
-En PowerShell:
+```bash
+copy .env.example .env
+```
 
-```powershell
-Copy-Item .env.example .env
+En Linux/macOS:
+
+```bash
+cp .env.example .env
 ```
 
 Genera la clave de la aplicación:
@@ -51,15 +78,19 @@ Genera la clave de la aplicación:
 php artisan key:generate
 ```
 
-### 4. Configurar SQLite
+### 4. Configurar la base de datos
 
-Comprueba que `.env` tenga:
+El proyecto puede funcionar con SQLite o con MySQL. Para desarrollo local, la opción recomendada es SQLite.
+
+#### Opción A: SQLite (recomendada para local)
+
+Asegúrate de tener esta configuración en `.env`:
 
 ```dotenv
 DB_CONNECTION=sqlite
 ```
 
-Crea el archivo de base de datos si no existe:
+Y crea el archivo de la base de datos si no existe:
 
 ```powershell
 if (!(Test-Path database/database.sqlite)) {
@@ -67,11 +98,28 @@ if (!(Test-Path database/database.sqlite)) {
 }
 ```
 
+#### Opción B: MySQL
+
+Configura los datos de conexión en `.env`:
+
+```dotenv
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=atelier_db
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+> El archivo `.env.example` del proyecto usa MySQL por defecto. Si prefieres SQLite, cámbialo antes de ejecutar migraciones.
+
 ### 5. Ejecutar migraciones y datos iniciales
 
 ```bash
 php artisan migrate --seed
 ```
+
+Esto crea las tablas y carga los seeders iniciales, incluyendo el usuario administrativo base.
 
 ### 6. Iniciar la aplicación
 
@@ -79,26 +127,44 @@ php artisan migrate --seed
 php artisan serve
 ```
 
-Abre `http://127.0.0.1:8000` en el navegador.
+Abre la siguiente URL en el navegador:
 
-## Funcionalidades
+```text
+http://127.0.0.1:8000
+```
 
-- Página principal de ATELIER.
-- Catálogo público de productos mediante la ruta `/productos`.
-- Formulario de contacto.
-- Inicio y cierre de sesión.
-- Panel administrativo protegido por autenticación y rol.
-- Gestión de productos: listado, creación, edición y eliminación.
+## Rutas principales
+
+- `/` — Home del sitio.
+- `/productos` — Catálogo público.
+- `/contacto` — Formulario de contacto.
+- `/login` — Inicio de sesión.
+- `/admin/productos` — Gestión administrativa de productos.
 
 ## Acceso administrativo
 
-Abre `/login` para iniciar sesión.
+El sistema usa autenticación y un middleware para restringir el acceso al panel administrativo.
 
-Las credenciales de demostración deben corresponder al usuario creado por `AdminUserSeeder`. No se deben guardar contraseñas reales en este archivo ni en el repositorio. Configura una contraseña segura para cada entorno.
+Se recomienda crear un usuario administrador seguro y no guardar credenciales reales en el repositorio. El seeder existente puede usarse como base en entornos locales o de prueba, pero en producción debe actualizarse con una contraseña segura y apropiada para cada entorno.
+
+## Frontend y assets
+
+El proyecto incluye Vite para la gestión de assets frontend. Si necesitas compilar assets de desarrollo:
+
+```bash
+npm install
+npm run dev
+```
+
+Para construir la versión de producción:
+
+```bash
+npm run build
+```
 
 ## Pruebas
 
-Ejecuta las pruebas automatizadas con:
+Ejecuta la suite de pruebas con:
 
 ```bash
 php artisan test
@@ -108,11 +174,12 @@ php artisan test
 
 | Problema | Solución |
 |---|---|
-| Falta la clave de cifrado | Ejecuta `php artisan key:generate`. |
-| No se encuentra la base de datos SQLite | Comprueba que exista `database/database.sqlite` y que `.env` use `DB_CONNECTION=sqlite`. |
-| Faltan dependencias | Ejecuta `composer install`. |
+| La aplicación dice que falta la clave de la app | Ejecuta `php artisan key:generate` y vuelve a intentar. |
+| No encuentra la base de datos | Verifica que `DB_CONNECTION` en `.env` sea correcto y que el archivo o servicio de base de datos exista. |
+| Error de extensiones PHP | Instala las extensiones necesarias para SQLite o MySQL según el tipo de base de datos que uses. |
 | El puerto 8000 está ocupado | Ejecuta `php artisan serve --port=8001`. |
-| Los cambios de vistas no aparecen | Ejecuta `php artisan view:clear` y recarga el navegador. |
+| Los cambios en vistas no aparecen | Ejecuta `php artisan view:clear` y recarga el navegador. |
+| No se compilan los assets frontend | Ejecuta `npm install` y luego `npm run dev` o `npm run build`. |
 
 ## Integrantes
 
@@ -125,10 +192,12 @@ php artisan test
 
 ## Flujo de ramas
 
-`main` → `fase-1-maquetacion` → `fase-2-javascript` → `fase-3-backend` → `fase-4-despliegue`.
+El proyecto sigue este flujo de trabajo:
 
-La integración final a `main` se realizará mediante un Pull Request, según el flujo acordado por el equipo.
+`main` → `fase-1-maquetacion` → `fase-2-javascript` → `fase-3-backend` → `fase-4-despliegue`
+
+La integración final a `main` se realiza mediante Pull Request, según el flujo acordado por el equipo.
 
 ## Licencia
 
-Distribuido bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE).
+Este proyecto se distribuye bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE).
