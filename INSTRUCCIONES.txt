@@ -1,0 +1,12 @@
+REDISEÑO ADMINISTRATIVO ATELIER
+
+1. Haz una copia de seguridad de las vistas actuales.
+2. Descomprime este ZIP dentro de C:\Users\MSI\ATELIER, conservando las carpetas y permitiendo reemplazar los archivos.
+3. Ejecuta:
+   php artisan view:clear
+   php artisan optimize:clear
+4. Abre /login y prueba iniciar sesión, listar, crear y editar productos.
+
+Se añade public/admin.css y una plantilla compartida resources/views/admin/layout.blade.php.
+No se modifican rutas, controladores, modelos, base de datos ni public/styles.css.
+Se reutilizan public/img/logo.png y public/img/atelier.png.

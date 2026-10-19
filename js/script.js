@@ -28,7 +28,7 @@ function esEmailValido(valor) {
 }
 
 
-// Verifica si el teléfono contiene solamente números y tiene un formato válido 
+// Verifica si el teléfono contiene solamente números y tiene un formato válido
 function esTelefonoValido(valor) {
     const telefono = valor.replace(/\D/g, "");
 
@@ -93,12 +93,12 @@ function validarCampo(campo) {
     if (campo === email) {
 
         if (estaVacio(email.value)) {
-            mostrarError(email, "El correo electrónico es obligatorio.");
+            mostrarError(email, "El correo electrÃƒÂ³nico es obligatorio.");
             return false;
         }
 
         if (!esEmailValido(email.value)) {
-            mostrarError(email, "Ingresa un correo electrónico válido.");
+            mostrarError(email, "Ingresa un correo electrÃƒÂ³nico válido.");
             return false;
         }
 
@@ -112,7 +112,7 @@ function validarCampo(campo) {
         if (!estaVacio(telefono.value) && !esTelefonoValido(telefono.value)) {
             mostrarError(
                 telefono,
-                "Ingresa un teléfono válido de 10 dígitos (809, 829 u 849)."
+                "Ingresa un teléfono válido de 10 dÃƒÂ­gitos (809, 829 u 849)."
             );
             return false;
         }
@@ -149,7 +149,7 @@ function validarCampo(campo) {
 }
 
 
-// Elimina el mensaje de confirmación anterior
+// Elimina el mensaje de confirmaciÃƒÂ³n anterior
 function quitarConfirmacion() {
     const confirmacionAnterior = document.getElementById("mensaje-confirmacion");
 
@@ -160,7 +160,7 @@ function quitarConfirmacion() {
     return true;
 }
 
-// Crea una tarjeta de confirmación dinámica
+// Crea una tarjeta de confirmaciÃƒÂ³n dinÃƒÂ¡mica
 function mostrarConfirmacion(nombreUsuario) {
 
     const confirmacion = document.createElement("div");
@@ -184,7 +184,7 @@ function mostrarConfirmacion(nombreUsuario) {
 }
 
 
-// Validación al enviar el formulario
+// ValidaciÃƒÂ³n al enviar el formulario
 formulario.addEventListener("submit", function (event) {
 
     quitarConfirmacion();
@@ -212,7 +212,7 @@ formulario.addEventListener("submit", function (event) {
 });
 
 
-// Validación mientras el usuario escribe
+// ValidaciÃƒÂ³n mientras el usuario escribe
 nombre.addEventListener("input", function () {
     validarCampo(nombre);
 });
@@ -231,7 +231,7 @@ mensaje.addEventListener("input", function () {
 });
 
 
-// Validación cuando cambia el asunto
+// ValidaciÃƒÂ³n cuando cambia el asunto
 asunto.addEventListener("change", function () {
     validarCampo(asunto);
 });

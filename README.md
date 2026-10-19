@@ -1,134 +1,217 @@
-# ATELIER — Contemporary Fashion & Haute Couture
+# ATELIER
 
-<div align="center">
+ATELIER es un proyecto de tienda en línea de moda contemporánea desarrollado como parte del curso Desarrollo de Aplicaciones Web (ISW-306). El repositorio integra la maquetación, lógica de frontend, backend y despliegue con Laravel 12.
 
-![ATELIER Banner](https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=80)
+## Descripción general
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-black.svg?style=for-the-badge)](LICENSE)
-[![Status: In Development](https://img.shields.io/badge/Status-Active%20Development-black.svg?style=for-the-badge)](https://github.com/PBB003/ATELIER)
-[![Tech Stack](https://img.shields.io/badge/Stack-Modern%20Web-black.svg?style=for-the-badge)](#-stack-tecnol%C3%B3gico)
-[![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-black.svg?style=for-the-badge)](CONTRIBUTING.md)
+La aplicación incluye:
 
-**Plataforma de comercio electrónico de alta gama para moda contemporánea, colecciones exclusivas y sastrería de autor.**
+- Página principal y contenido público.
+- Catálogo de productos accesible en `/productos`.
+- Formulario de contacto.
+- Inicio y cierre de sesión.
+- Panel administrativo con autenticación y control por rol.
+- Gestión de productos (crear, editar, listar y eliminar).
 
-[Explorar Colección](#-características-principales) • [Arquitectura](#-arquitectura-del-proyecto) • [Instalación](#-instalación-y-despliegue) • [Roadmap](#-roadmap-de-producto)
+## Tecnologías utilizadas
 
----
+| Tecnología | Versiones / uso |
+|---|---|
+| PHP | 8.2 o superior |
+| Laravel | 12.x |
+| Composer | 2.x |
+| Base de datos | SQLite recomendado para entorno local; MySQL también es compatible |
+| Frontend | Blade, HTML, CSS, JavaScript |
+| Bundling frontend | Vite y npm |
 
-</div>
+## Requisitos previos
 
-## 📖 Visión General
+Antes de instalar el proyecto, asegúrate de tener:
 
-**ATELIER** es una solución e-commerce vanguardista concebida para marcas de moda de lujo y diseñadores independientes. Diseñada con un enfoque estético minimalista, navegación ultra fluida y una arquitectura escalable, ofrece a los clientes una experiencia de compra inmersiva inspirada en las pasarelas y boutiques más prestigiosas del mundo.
+- PHP 8.2 o superior.
+- Composer 2.x.
+- Git.
+- SQLite o MySQL instalado según tu entorno.
+- Node.js y npm si deseas compilar assets frontend con Vite.
 
----
+Si usas SQLite, debes tener activadas las extensiones `pdo_sqlite`, `sqlite3` y `zip` (requerida por Composer).
+Si usas MySQL, asegúrate de tener `pdo_mysql` disponible.
 
-## ✨ Características Principales
+## Instalación local
 
-### 🛍️ Experiencia del Cliente (Storefront)
-- **Catálogo Editorial & Colecciones:** Visualización en alta definición con filtros avanzados por categoría, temporada, talla, material y paleta de colores.
-- **Lookbook Interactivo:** Navegación por conjuntos completos con función *"Comprar el Look"*.
-- **Ficha de Producto de Alta Precisión:** Galería multimedia, selector dinámico de variantes (tallas/colores), guía de medidas interactiva y disponibilidad en tiempo real.
-- **Bolsa de Compras & Fast Checkout:** Carrito deslizable con persistencia local/remota, cálculo automático de envíos, cupones de descuento e integración de pasarelas de pago.
-- **Portal de Clientes & Fidelización:** Historial de pedidos, lista de deseos (Wishlist), seguimiento de envíos y preferencias de estilo personalizadas.
+### 1. Clonar el repositorio
 
-### ⚙️ Gestión y Operaciones (Backoffice)
-- **Control de Inventario & Stock:** Alertas de existencias mínimas y control multisede/bodega.
-- **Gestión de Pedidos & Logística:** Flujo completo desde la confirmación del pedido hasta el despacho y entrega.
-- **Analíticas y Métricas de Venta:** Métricas de conversión, prendas más demandadas y valor promedio por carrito (AOV).
-
----
-
-## 🛠️ Stack Tecnológico
-
-| Capa | Tecnologías |
-| :--- | :--- |
-| **Frontend** | HTML5 Semántico, JavaScript Moderno (ES6+), CSS3 / Vanilla CSS con variables de diseño |
-| **Diseño & UI/UX** | Diseño responsivo (Mobile-First), microinteracciones, estética editorial y tipografía curada |
-| **Gestión de Estado** | Storage modular y reactividad basada en eventos |
-| **Control de Versiones & CI/CD** | Git, GitHub Actions |
-
----
-
-## 📁 Arquitectura del Proyecto
-
-```text
-ATELIER/
-├── assets/                  # Recursos estáticos
-│   ├── css/                 # Hojas de estilo y design tokens
-│   ├── js/                  # Módulos y controladores de lógica
-│   ├── images/              # Fotografías de productos y lookbooks
-│   └── icons/               # Iconografía y branding
-├── components/              # Componentes de interfaz reutilizables
-├── pages/                   # Vistas principales (Catálogo, Producto, Carrito, Checkout)
-├── data/                    # Catálogo de productos y configuración inicial
-├── docs/                    # Documentación técnica y especificaciones
-├── .gitignore
-└── README.md
+```bash
+git clone https://github.com/PBB003/ATELIER.git
+cd ATELIER
 ```
 
----
+Si quieres trabajar en la rama de despliegue del curso:
 
-## 🚀 Instalación y Despliegue
+```bash
+git checkout fase-4-despliegue
+```
 
-### Requisitos Previos
-- [Git](https://git-scm.com/) instalado en el sistema.
-- Navegador web moderno (Chrome, Firefox, Safari, Edge).
-- Opcional: Entorno Node.js / servidor HTTP local (como Live Server o Vite).
+### 2. Instalar dependencias de PHP
 
-### Pasos de Configuración
+```bash
+composer install
+```
 
-1. **Clonar el repositorio:**
-   ```bash
-   git clone https://github.com/PBB003/ATELIER.git
-   cd ATELIER
-   ```
+### 3. Configurar el entorno
 
-2. **Iniciar en entorno de desarrollo local:**
-   - Si utilizas una extensión como **Live Server** en VSCode: abrir `index.html` con Live Server.
-   - O usando cualquier servidor HTTP estático:
-     ```bash
-     npx serve .
-     # o
-     python -m http.server 8000
-     ```
+Copia el archivo de ejemplo:
 
-3. **Acceder a la aplicación:**
-   Abrir en el navegador: `http://localhost:8000` (o el puerto indicado por tu servidor).
+En Windows (PowerShell):
+```powershell
+Copy-Item .env.example .env
+```
 
----
+En Linux/macOS:
+```bash
+cp .env.example .env
+```
 
-## 🗺️ Roadmap de Producto
+Genera la clave de la aplicación:
 
-- [x] Concepción del sistema de diseño y paleta editorial.
-- [x] Estructura base del catálogo y storefront.
-- [ ] Integración de pasarela de pago (Stripe / PayPal / Webpay).
-- [ ] Recomendador de tallas asistido por IA.
-- [ ] Módulo de realidad aumentada para visualización de prendas.
-- [ ] Soporte multi-idioma y multi-moneda automatizado.
+```bash
+php artisan key:generate
+```
 
----
+### 4. Configurar la base de datos
 
-## 🤝 Contribuciones
+El proyecto viene preparado para funcionar con **SQLite por defecto** en entorno local, garantizando una configuración inmediata sin necesidad de levantar servicios de bases de datos externos. También es compatible con MySQL.
 
-Las contribuciones son bienvenidas. Si deseas colaborar en la optimización o agregar nuevas características a la plataforma:
+#### Opción A: SQLite (por defecto y recomendada para local)
 
-1. Realiza un Fork del proyecto.
-2. Crea una rama para tu función (`git checkout -b feature/nueva-caracteristica`).
-3. Confirma tus cambios (`git commit -m 'feat: agrega nueva característica al catálogo'`).
-4. Haz push a la rama (`git push origin feature/nueva-caracteristica`).
-5. Abre un **Pull Request**.
+El archivo `.env.example` ya viene configurado con:
 
----
+```dotenv
+DB_CONNECTION=sqlite
+```
 
-## 📄 Licencia
+Crea el archivo de la base de datos si no existe:
 
-Distribuido bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
+En PowerShell (Windows):
+```powershell
+if (!(Test-Path database/database.sqlite)) {
+    New-Item database/database.sqlite -ItemType File
+}
+```
 
----
+En Bash (Linux/macOS):
+```bash
+touch database/database.sqlite
+```
 
-<div align="center">
+#### Opción B: MySQL (opcional)
 
-**ATELIER Haute Couture © 2026** — *Elevating modern aesthetics through digital craftsmanship.*
+Si deseas utilizar MySQL, ajusta las siguientes variables en tu `.env`:
 
-</div>
+```dotenv
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=atelier_db
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+### 5. Ejecutar migraciones y datos iniciales
+
+```bash
+php artisan migrate --seed
+```
+
+Esto crea las tablas y carga los seeders iniciales:
+- Categorías y prendas para **Mujer**, **Hombre** y **Niños**.
+- Cuenta de usuario administrador base.
+
+### 6. Iniciar la aplicación
+
+```bash
+php artisan serve
+```
+
+Abre la siguiente URL en el navegador:
+
+```text
+http://127.0.0.1:8000
+```
+
+## Rutas principales
+
+- `/` — Portada principal del sitio.
+- `/productos` — Catálogo público con filtros dinámicos por género (`?genero=mujer`, `hombre`, `ninos`) y categorías.
+- `/sobre-nosotros` — Historia, filosofía y taller de la marca.
+- `/contacto` — Formulario de contacto con procesamiento backend.
+- `/login` — Inicio de sesión.
+- `/admin/productos` — Panel administrativo (CRUD protegido de inventario).
+
+## Acceso administrativo
+
+El sistema cuenta con autenticación y control de acceso basado en roles mediante el middleware `admin`.
+
+Para ingresar al panel en entorno de pruebas local:
+1. Navega a `http://127.0.0.1:8000/login`.
+2. Inicia sesión con las credenciales creadas por el seeder inicial:
+   - **Correo electrónico:** `admin@atelier.com`
+   - **Contraseña:** `admin123`
+3. Al autenticarte, tendrás acceso completo a `/admin/productos` para listar, crear, editar y eliminar prendas del catálogo.
+
+> **Nota de seguridad:** Las credenciales anteriores corresponden exclusivamente a entornos locales de demostración. Para producción, define siempre contraseñas seguras y actualiza las variables de entorno.
+
+## Frontend y assets
+
+El proyecto incluye Vite para la gestión de assets frontend. Si necesitas compilar assets de desarrollo:
+
+```bash
+npm install
+npm run dev
+```
+
+Para construir la versión de producción:
+
+```bash
+npm run build
+```
+
+## Pruebas
+
+Ejecuta la suite de pruebas con:
+
+```bash
+php artisan test
+```
+
+## Solución de problemas
+
+| Problema | Solución |
+|---|---|
+| La aplicación dice que falta la clave de la app | Ejecuta `php artisan key:generate` y vuelve a intentar. |
+| No encuentra la base de datos | Verifica que `DB_CONNECTION` en `.env` sea correcto y que el archivo o servicio de base de datos exista. |
+| Error de extensiones PHP | Instala las extensiones necesarias para SQLite o MySQL según el tipo de base de datos que uses. |
+| El puerto 8000 está ocupado | Ejecuta `php artisan serve --port=8001`. |
+| Los cambios en vistas no aparecen | Ejecuta `php artisan view:clear` y recarga el navegador. |
+| No se compilan los assets frontend | Ejecuta `npm install` y luego `npm run dev` o `npm run build`. |
+
+## Integrantes
+
+| Integrante | Usuario | GitHub |
+|---|---|---|
+| Laura Isabel García Ferrera | Lequeen88 | https://github.com/Lequeen88 |
+| Rebeca Lisbeth Santana Gómez | Rebeca Lisbeth | https://github.com/RebecaLisbeth |
+| Pedro Francisco Breynik Báez | PBB003 | https://github.com/PBB003 |
+| Bileidy Adriana Sánchez Severino | BileidySanchez | https://github.com/BileidySanchez |
+
+## Flujo de ramas
+
+El proyecto sigue este flujo de trabajo:
+
+`main` → `fase-1-maquetacion` → `fase-2-javascript` → `fase-3-backend` → `fase-4-despliegue`
+
+La integración final a `main` se realiza mediante Pull Request, según el flujo acordado por el equipo.
+
+## Licencia
+
+Este proyecto se distribuye bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE).
